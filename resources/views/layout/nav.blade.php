@@ -10,7 +10,7 @@
         </a> </div>
       <div id="navbar-collapse-grid" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown"> <a href="/index.php">Home</a>
+          <li class="dropdown"> <a href="/">Home</a>
           </li>
           <li> <a href="/rooms">Room List</a></li>
           <li> <a href="/gallery">Gallery</a></li>

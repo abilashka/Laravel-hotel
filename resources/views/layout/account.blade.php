@@ -14,7 +14,7 @@
               @else
               <button class="btn btn-default btn-xs dropdown-toggle js-activated" type="button" data-toggle="dropdown">Welcome {{ Auth::user()->name }}<span class="caret"></span> </button>
               <ul class="dropdown-menu">
-                <li> <a href="usercp.php">User CP</a> </li>
+                <li> <a href="/usercp">User CP</a> </li>
                 <li> <a href="{{ route('logout') }}">Logout</a> </li>
               </ul>
               @endguest

@@ -9,7 +9,7 @@
         <!-- Slide 1 -->
         <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" > 
           <!-- Main Image --> 
-          <img src="images/slides/slide-bg.jpg" style="opacity:0;" alt="slidebg1"  data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
+          <img src="/images/slides/slide-bg.jpg" style="opacity:0;" alt="slidebg1"  data-bgfit="cover" data-bgposition="left bottom" data-bgrepeat="no-repeat">
           <!-- Layers -->           
           <!-- Layer 1 -->
           <div class="caption sft revolution-starhotel bigtext"  
@@ -40,7 +40,7 @@
         <!-- Slide 2 -->
         <li data-transition="boxfade" data-slotamount="7" data-masterspeed="1000" > 
           <!-- Main Image --> 
-          <img src="images/slides/slide-bg-02.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"> 
+          <img src="/images/slides/slide-bg-02.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"> 
           <!-- Layers -->           
           <!-- Layer 1 -->
           <div class="caption sft revolution-starhotel bigtext"  
@@ -65,7 +65,7 @@
                         data-speed="1000" 
                         data-start="1900" 
                         data-easing="easeOutBack">
-                        <a href="roomlist.php" class="button btn btn-purple btn-lg">Book this room</a> 
+                        <a href="roomlist" class="button btn btn-purple btn-lg">Book this room</a> 
                   </div>
         </li>
       </ul>
@@ -109,7 +109,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=1" class="btn btn-primary btn-block">Read More</a>
+              <a href="/room/1" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=2" class="btn btn-primary btn-block">Read More</a>
+              <a href="/room/2" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=3" class="btn btn-primary btn-block">Read More</a>
+              <a href="/room/3" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>

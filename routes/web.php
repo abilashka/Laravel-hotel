@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/', function () {
-    return view('home');
-});
 
 
 Route::get('/gallery', function () {
@@ -27,7 +24,9 @@ Route::get('/gallery', function () {
 Route::get('/usercp', 'PanelController@index');
 Route::post('//editbooking/{booking}', 'PanelController@upbooking');
 Route::post('/usercp', 'PanelController@cclbooking');
+Route::post('/usercp/profile', 'PanelController@updateprofile');
 Route::get('/editbooking/{booking}', 'PanelController@editbook');
+Route::get('/usercp/profile', 'PanelController@userprofile');
 
 Route::get('/rooms', 'RoomsController@index');
 Route::get('/rooms/{room}', 'RoomsController@show');

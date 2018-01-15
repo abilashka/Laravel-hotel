@@ -35,10 +35,7 @@ jQuery(document).ready(function(){
 
 	});
 	
-	
-	
-	
-	$('#registerform').submit(function(){
+	$('#updateform').submit(function(){
 
 		var action = $(this).attr('action');
 
@@ -51,18 +48,18 @@ jQuery(document).ready(function(){
 
 		$.post(action, {
 			email: $('#email').val(),
-			FirstName: $('#FirstName').val(),
-			LastName: $('#LastName').val(),
-			username: $('#username').val(),
-			passwd: $('#passwd').val(),
-			Phone: $('#Phone').val(),
+			name: $('#name').val(),
+			phone: $('#phone').val(),
+			qanswer: $('#qanswer').val(),
+			npass: $('#npass').val(),
+			ncpass: $('#ncpass').val(),
 		},
 			function(data){
 				document.getElementById('message').innerHTML = data;
 				$('#message').slideDown('slow');
-				$('#reservationform img.loader').fadeOut('slow',function(){$(this).remove()});
+				$('#updateform img.loader').fadeOut('slow',function(){$(this).remove()});
 				$('#submit').removeAttr('disabled');
-				if(data.match('success') != null) $('#reservationform .form-group, #reservationform .btn').slideUp('slow');
+				
 
 			}
 		);
@@ -72,40 +69,9 @@ jQuery(document).ready(function(){
 		return false;
 
 	});
-	
-	
-	
-	$('#loginform').submit(function(){
 
-		var action = $(this).attr('action');
 
-		$("#message").slideUp(750,function() {
-		$('#message').hide();
 
- 		$('#submit')
-			.after('<img src="images/ajax-loader.gif" class="loader" />')
-			.attr('disabled','disabled');
-
-		$.post(action, {
-			email: $('#email').val(),
-			password: $('#password').val(),
-		},
-			function(data){
-				document.getElementById('message').innerHTML = data;
-				$('#message').slideDown('slow');
-				$('#reservationform img.loader').fadeOut('slow',function(){$(this).remove()});
-				$('#submit').removeAttr('disabled');
-				if(data.match('success') != null) $('#reservationform .form-group, #reservationform .btn').slideUp('slow');
-
-			}
-		);
-
-		});
-
-		return false;
-
-	});
-	
 	$('#usercpform').submit(function(){
 
 		var action = $(this).attr('action');

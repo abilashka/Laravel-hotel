@@ -7,15 +7,7 @@
 	<div class="row">
     	<div class="col-md-3 col-sm-4 users-sidebar-wrapper">
              <!-- SIDEBAR -->
-            <div class="users-sidebar tbssticky">
-				<ul class="list-group">
-	                <li class="list-group-item active"> <a href="/cpanel"><i class="fa fa-home"></i> Dashboard</a></li>
-						
-                        <li class="list-group-item"> <a href="profile.php"><i class="fa fa-user"></i> My Profile</a></li>
-                        <li class="list-group-item"> <a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                    </ul>
-                </div>
-            </div>
+            @inclide('layout.sidebar')
 
             <div class="col-md-9 col-sm-8">
 	        	<h2>Dashboard</h2>
