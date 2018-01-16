@@ -25,6 +25,9 @@ Route::get('/usercp', 'PanelController@index');
 Route::post('/editbooking/{booking}', 'PanelController@upbooking');
 Route::post('/usercp', 'PanelController@cclbooking');
 Route::get('/usercp/admin', 'PanelController@adminpanel');
+Route::post('/usercp/admin/cancel', 'PanelController@cclbooking');
+Route::post('/usercp/admin/clear', 'PanelController@clrbooking');
+Route::post('/usercp/admin/delete', 'PanelController@dlbooking');
 
 Route::get('/usercp/profile', 'PanelController@userprofile');
 Route::post('/usercp/profile', 'PanelController@updateprofile');

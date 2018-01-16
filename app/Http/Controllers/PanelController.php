@@ -62,6 +62,63 @@ class PanelController extends Controller
 	    }
     }
 
+public function dlbooking(Request $request)
+    {
+    	$bookID = $request->input('bookID');
+    	$count = DB::table('Booking')->where([['id', '=', $bookID],])->count();
+
+        if(trim($bookID) == '') 
+        {
+			echo '
+			<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Something went wrong! Please refresh the page..</div>';
+		}
+		
+		elseif(!$count)
+		{
+			echo '<div class="alert alert-danger alert-dismissable">
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>There is no such booking with the id you specified.</div>';
+			
+		}
+		else
+		{
+		 	$results = \DB::select( "INSERT into Deletelogs SELECT * FROM Booking WHERE ID=$bookID" );
+		 	DB::table('Booking')->where('id', '=', $bookID)->delete();
+			echo '<div class="alert alert-success alert-dismissable"> 
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 
+			<strong>Sucess!</strong> The booking has deleted.
+	       </div>';
+	    }
+    }
+
+    public function clrbooking(Request $request)
+    {
+    	$bookID = $request->input('bookID');
+    	$count = DB::table('Booking')->where([['Status', '=', '2'],['id', '=', $bookID],])->count();
+
+        if(trim($bookID) == '') 
+        {
+			echo '
+			<div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Something went wrong! Please refresh the page..</div>';
+		}
+		
+		elseif($count)
+		{
+			echo '<div class="alert alert-danger alert-dismissable">
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This booking has been paid already.</div>';
+			
+		}
+		else
+		{
+		 	DB::table('Booking')->where('id', $bookID)->update(['Status' => 1]);
+			echo '<div class="alert alert-success alert-dismissable"> 
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 
+			<strong>Sucess!</strong> The booking has cleared the payment.
+	       </div>';
+	    }
+    }
+
     public function upbooking(Request $request, $booking)
     {
     	$count = DB::table('Booking')->where([['Status', '=', '2'],['id', '=', $booking],])->count();
