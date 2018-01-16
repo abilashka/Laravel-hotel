@@ -26,6 +26,13 @@ class PanelController extends Controller
         return view('panel.main')->with('records',$users);
     }
 
+    public function adminpanel()
+    {
+    	$userid = Auth::user()->id;
+    	$books = DB::table('Booking')->get();
+        return view('panel.admin')->with('books',$books);
+    }
+
     public function cclbooking(Request $request)
     {
     	$bookID = $request->input('bookID');
