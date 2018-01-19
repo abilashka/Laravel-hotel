@@ -12,7 +12,7 @@
     <h2>Dashboard</h2>
       <br><h4>Reservations</h4>
         <div class="dashboard-block">
-          
+          <div id="message"></div>
           <div class="table-responsive">
             <table class="table table-striped mt30">
               <thead>
@@ -40,21 +40,18 @@
                       @php if($booking->Status == 2) echo '<span class="btn btn-xs btn-danger"><i class="fa fa-warning"></i> Cancelled</span>'; @endphp
                     </td>
                     <td>
-                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/clear" name="usercpformcnl" id="usercpformcnl" method="POST">
-                        <div id="message"></div>
-                        <div class="form-group">
+                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/clear" name="usercpform" id="usercpform" method="POST">
+                            <div class="form-group">
                           <input type="hidden" name="bookID" id="bookID" value="{{$booking->id}}">
                         </div>
                         <button type="submit" class="btn btn-xs btn-default">Clear Payment!</button> 
                       </form>
-                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/cancel" name="usercpformcnl" id="usercpformcnl" method="POST">
-                        <div id="message"></div>
+                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/cancel" name="usercpform" id="usercpform" method="POST">
                         <br>
                         <input type="hidden" name="bookID" id="bookID" value="{{$booking->id}}">
                         <button type="submit" class="btn btn-xs btn-black">Cancel Booking</button> 
                       </form>
-                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/delete" name="usercpformcnl" id="usercpformcnl" method="POST">
-                        <div id="message"></div>
+                      <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/delete" name="usercpform" id="usercpform" method="POST">
                         <br>
                         <input type="hidden" name="bookID" id="bookID" value="{{$booking->id}}">
                         <button type="submit" class="btn btn-xs btn-black">Delete Booking</button> 
