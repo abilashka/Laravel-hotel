@@ -14,6 +14,11 @@
                 <h4>Reservations</h4>
 
                 <div class="dashboard-block">	
+                    {!! Form::open(array('url' => 'queries', 'class'=>'form navbar-form navbar-right searchform')) !!}
+                    {!! Form::text('search', null, array('required', 'class'=>'form-control', 'placeholder'=>'Search with checkin date range')) !!}
+                    {!! Form::submit('Search',array('class'=>'btn btn-default')) !!}
+                    {!! Form::close() !!}
+                    
 	                <div class="table-responsive">
                     
 	                    <table class="table table-striped mt30">

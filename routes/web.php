@@ -38,6 +38,8 @@ Route::get('/editbooking/{booking}', 'PanelController@editbook');
 Route::get('/rooms', 'RoomsController@index');
 Route::get('/rooms/{room}', 'RoomsController@show');
 
+Route::post('queries', 'PanelController@search');
+
 
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -5,7 +5,7 @@
     </head>
     
 
-<body class="pattern-1">
+<body>
 <div class="boxed">
     @include('layout.account')
 

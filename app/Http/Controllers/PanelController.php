@@ -91,6 +91,14 @@ public function dlbooking(Request $request)
 	    }
     }
 
+    public function search(Request $request)
+	{
+	  
+	  $query = $request->input('search');
+	  $data = DB::table('Booking')->where('Checkin', 'LIKE', '%' . $query . '%')->paginate(10);
+	  return view('panel.main')->with('records',$data);    
+	 }
+
     public function clrbooking(Request $request)
     {
     	$bookID = $request->input('bookID');
