@@ -38,7 +38,7 @@ Route::get('/editbooking/{booking}', 'PanelController@editbook');
 Route::get('/rooms', 'RoomsController@index');
 Route::get('/rooms/{room}', 'RoomsController@show');
 
-Route::post('queries', 'PanelController@search');
+Route::post('usercp/search', 'PanelController@search');
 
 
 Auth::routes();
