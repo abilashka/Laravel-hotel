@@ -14,7 +14,7 @@
 
 <section id="reservation-form" class="mt50 clearfix">
   <div class="col-sm-12 col-md-4">
-    <form class="reservation-vertical clearfix" role="form" method="post" action="php/reservation.php" name="reservationform" id="reservationform">
+    <form class="reservation-vertical clearfix" role="form" method="post" action="/rooms" name="reservationform" id="reservationform">
       <h2 class="lined-heading"><span>Reservation</span></h2>
       <div class="price">
         <h4>{{ $room->Fcode }}</h4>
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <select class="hidden" name="price" id="price" disabled="disabled">
-          <option selected="selected">{{ $room->price }}</option>
+          <option selected="selected">{{ $room->Price }}</option>
         </select>
       </div>
       <div class="form-group">

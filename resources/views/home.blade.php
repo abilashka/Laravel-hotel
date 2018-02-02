@@ -34,7 +34,7 @@
                         data-speed="1000" 
                         data-start="1900" 
                         data-easing="easeOutBack">
-                        <a href="room-list.html" class="button btn btn-purple btn-lg">See rooms</a> 
+                        <a href="rooms" class="button btn btn-purple btn-lg">See rooms</a> 
                   </div>
         </li>
         <!-- Slide 2 -->
@@ -65,7 +65,7 @@
                         data-speed="1000" 
                         data-start="1900" 
                         data-easing="easeOutBack">
-                        <a href="roomlist" class="button btn btn-purple btn-lg">Book this room</a> 
+                        <a href="rooms" class="button btn btn-purple btn-lg">Book this room</a> 
                   </div>
         </li>
       </ul>
@@ -109,7 +109,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="/room/1" class="btn btn-primary btn-block">Read More</a>
+              <a href="/rooms/1" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="/room/2" class="btn btn-primary btn-block">Read More</a>
+              <a href="/rooms/2" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="/room/3" class="btn btn-primary btn-block">Read More</a>
+              <a href="/rooms/3" class="btn btn-primary btn-block">Read More</a>
             </div>
           </div>
         </div>

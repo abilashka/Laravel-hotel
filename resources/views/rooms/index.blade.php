@@ -49,7 +49,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=1" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/1" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=2" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/2" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=3" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/3" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=4" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/4" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=5" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/5" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=6" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/6" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -235,7 +235,7 @@
                   </ul>
                 </div>
               </div>
-              <a href="room.php?type=7" class="btn btn-primary btn-block">Book Now</a> </div>
+              <a href="rooms/7" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -266,7 +266,7 @@
                   </ul>
                 </div>
               </div>
-            <a href="room.php?type=8" class="btn btn-primary btn-block">Book Now</a> </div>
+            <a href="rooms/8" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
@@ -297,7 +297,7 @@
                   </ul>
                 </div>
               </div>
-            <a href="room.php?type=9" class="btn btn-primary btn-block">Book Now</a> </div>
+            <a href="rooms/9" class="btn btn-primary btn-block">Book Now</a> </div>
           </div>
         </div>
       </div>
