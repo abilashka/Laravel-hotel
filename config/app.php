@@ -163,6 +163,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
+        
+        /************Custom Providers***********/
+        
+        Reportico\Reportico\ReporticoServiceProvider::class,
+        Jimmyjs\ReportGenerator\ServiceProvider::class,
 
         /*
          * Package Service Providers...

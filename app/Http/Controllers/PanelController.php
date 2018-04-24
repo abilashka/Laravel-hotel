@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use DB;
 use Auth;
+use PdfReport;
 
 
 class PanelController extends Controller
@@ -48,8 +49,7 @@ class PanelController extends Controller
 		elseif($count)
 		{
 			echo '<div class="alert alert-danger alert-dismissable">
-  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This booking has cancelled already.</div>';
-			
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This booking has cancelled already.</div>';	
 		}
 		else
 		{
