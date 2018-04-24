@@ -2,6 +2,10 @@
 
 @section('content')
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
 <div class="dashboard-wrapper">
   <div class="row">
@@ -28,6 +32,12 @@
               </thead>
               <tbody>
                 @foreach($books as $booking)
+                {{
+                  $line = array(array('user', 12), array('admin', 3), array('user2', 1), array('user3', 1));
+
+
+
+                }}
                   <tr>
                     <td>{{ $booking->Checkin }}</td>
                     <td>{{ $booking->Checkout }}</td>

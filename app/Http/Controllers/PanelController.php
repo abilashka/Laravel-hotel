@@ -25,6 +25,34 @@ class PanelController extends Controller
     	$userid = Auth::user()->id;
     	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
         return view('panel.main')->with('records',$users);
+	}
+	
+	public function getreport()
+    {
+    	$userid = Auth::user()->id;
+    	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+        $columns = [
+			'Name' => 'name',
+			'Registered At', // if no column_name specified, this will automatically seach for snake_case of column name (will be registered_at) column from query result
+			'Total Balance' => 'balance',
+			'Status' => function($result) { // You can do if statement or any action do you want inside this closure
+				return ($result->balance > 100000) ? 'Rich Man' : 'Normal Guy';
+			}
+		];
+		return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumn('Total Balance', [
+                        'displayAs' => function($result) {
+                            return thousandSeparator($result->balance);
+                        }
+                    ])
+                    ->editColumns(['Total Balance', 'Status'], [
+                        'class' => 'right bold'
+                    ])
+                    ->showTotal([
+                        'Total Balance' => 'point' // if you want to show dollar sign ($) then use 'Total Balance' => '$'
+                    ])
+                    ->limit(20)
+                    ->stream();
     }
 
     public function adminpanel()
