@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -168,8 +168,8 @@ return [
         /************Custom Providers***********/
         
         Reportico\Reportico\ReporticoServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
-
         /*
          * Package Service Providers...
          */

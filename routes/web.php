@@ -22,6 +22,7 @@ Route::get('/gallery', function () {
 });
 
 Route::get('/usercp', 'PanelController@index');
+Route::get('/usercp/report', 'PanelController@getreport');
 Route::post('/editbooking/{booking}', 'PanelController@upbooking');
 Route::post('/usercp', 'PanelController@cclbooking');
 Route::get('/usercp/admin', 'PanelController@adminpanel');
@@ -44,3 +45,8 @@ Route::post('usercp/search', 'PanelController@search');
 
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+$s = 'social.';
+Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\SocialController@getSocialRedirect']);
+Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\SocialController@getSocialHandle']);

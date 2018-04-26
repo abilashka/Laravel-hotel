@@ -6275,6 +6275,17 @@ td.visible-print {
   display: none !important;
 }
 
+
+.google{
+  background-color: #DD4B39;
+  border-color: #DD4B39;
+}
+.google:hover{
+  background-color: #e15f4f;
+  border-color:#e15f4f;
+}
+
+
 @media print {
   .visible-print {
     display: block !important;

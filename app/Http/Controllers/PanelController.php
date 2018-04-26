@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Booking;
 use DB;
 use Auth;
-use PdfReport;
+use ExcelReport;
 
 
 class PanelController extends Controller
@@ -29,30 +29,35 @@ class PanelController extends Controller
 	
 	public function getreport()
     {
-    	$userid = Auth::user()->id;
-    	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		$userid = Auth::user()->id;
+		$title = 'Room Booking Report';
+		$queryBuilder = DB::table('Booking')->where('Uid', '>=', $userid)->get();
         $columns = [
-			'Name' => 'name',
-			'Registered At', // if no column_name specified, this will automatically seach for snake_case of column name (will be registered_at) column from query result
-			'Total Balance' => 'balance',
+			'Check in' => 'Checkin',
+			'Check out' => 'Checkout',
+			'Adult' => 'Adult',
+			'Child' => 'Child',
+			'Price' => 'Price',
+			'Room Type' => 'Size',
 			'Status' => function($result) { // You can do if statement or any action do you want inside this closure
-				return ($result->balance > 100000) ? 'Rich Man' : 'Normal Guy';
+				if($result->Status == 0) return 'Payment Due';
+				else if($result->Status == 1) return 'Paid';
+				else if($result->Status == 2) return 'Cancelled';
 			}
 		];
-		return PdfReport::of($title, $meta, $queryBuilder, $columns)
-                    ->editColumn('Total Balance', [
-                        'displayAs' => function($result) {
-                            return thousandSeparator($result->balance);
-                        }
-                    ])
-                    ->editColumns(['Total Balance', 'Status'], [
-                        'class' => 'right bold'
-                    ])
-                    ->showTotal([
-                        'Total Balance' => 'point' // if you want to show dollar sign ($) then use 'Total Balance' => '$'
-                    ])
-                    ->limit(20)
-                    ->stream();
+		$meta = [
+			'Sort By' => 'Checkin'
+		];
+		 var_dump($queryBuilder);
+		return ExcelReport::of($title, $meta, $queryBuilder, $columns)
+		->editColumn('Price', [
+			'class' => 'right bolder italic-red'
+		])
+		->setCss([
+			'.bolder' => 'font-weight: 800;',
+			'.italic-red' => 'color: red;font-style: italic;'
+		])
+		->download('report');
     }
 
     public function adminpanel()
