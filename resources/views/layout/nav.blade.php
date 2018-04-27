@@ -14,6 +14,7 @@
           </li>
           <li> <a href="/rooms">Room List</a></li>
           <li> <a href="/gallery">Gallery</a></li>
+          <li> <a href="/contact">Gallery</a></li>
         </ul>
       </div>
     </div>

@@ -2072,7 +2072,7 @@ border: 1px solid;
 #map {
 	width: 100%;
 	height: 300px;
-	overflow: visible !important;
+	overflow: hidden !important;
 	border: 1px solid;
 	margin-top: -1px;
 }

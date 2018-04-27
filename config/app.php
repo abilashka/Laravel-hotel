@@ -170,6 +170,7 @@ return [
         Reportico\Reportico\ReporticoServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */

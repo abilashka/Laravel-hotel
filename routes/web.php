@@ -21,6 +21,10 @@ Route::get('/gallery', function () {
     return view('gallery');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/usercp', 'PanelController@index');
 Route::get('/usercp/report', 'PanelController@getreport');
 Route::post('/editbooking/{booking}', 'PanelController@upbooking');
@@ -39,6 +43,8 @@ Route::get('/editbooking/{booking}', 'PanelController@editbook');
 Route::get('/rooms', 'RoomsController@index');
 Route::get('/rooms/{room}', 'RoomsController@show');
 Route::post('/rooms', 'RoomsController@createbking');
+
+Route::post('/contact', 'PanelController@contact');
 
 Route::post('usercp/search', 'PanelController@search');
 

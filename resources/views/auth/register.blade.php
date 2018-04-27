@@ -39,8 +39,15 @@
             <label for="passwd" accesskey="P">Confirm Password</label>
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
           </div>
-          
+          <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
           <button type="submit" class="btn btn-primary btn-block">Register!</button>
+
+           <div class="row margin-bottom-10">
+            <p class="or-social">Or Use Social Login</p>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-lg  btn-danger btn-block google">Google+</a>
+            </div>
+          </div>
         </form>
       </div>
     </section>
