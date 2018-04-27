@@ -34,7 +34,7 @@ $characters = json_decode($data); // decode the JSON feed
           </div>
           <div class="panel-body">
             <address>
-            <abbr title="City">City</abbr> <a href="#">{{ $weather->city->name }} </a><br>
+            <abbr title="Precipation">Precipation</abbr> <a href="#">{{ $weather->precipitation->getDescription()}} ({{ $weather->precipitation}}) </a><br>
             <abbr title="Temperature">Temperature</abbr> <a href="#">{{ $weather->temperature->getFormatted() }} </a><br>
             <abbr title="Pressure">Pressure</abbr> <a href="#">{{ $weather->pressure }} </a><br>
             <abbr title="Humidity">Humidity</abbr> <a href="#">{{ $weather->humidity }} </a><br>
