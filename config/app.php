@@ -171,7 +171,7 @@ return [
         Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
-        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+        
         
         
         /*

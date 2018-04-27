@@ -12,14 +12,16 @@ $units = 'metric';
 $owm = new OpenWeatherMap();
 $owm->setApiKey("99b7b87ee4abc5fa5dc7b55280272018");
 $weather = $owm->getWeather('Huddersfield', $units, $lang);
+
+
+
+$url = 'https://ipinfo.io'; // path to your JSON file
+$data = file_get_contents($url); // put the contents of the file into a variable
+$characters = json_decode($data); // decode the JSON feed
+
 @endphp
 
-<script>
 
-    $.get("https://ipinfo.io", function(response) {
-        $data = json_decode($response, true);
-}, "jsonp")
-</script>
 
 <div class="dashboard-wrapper">
 	<div class="row">
@@ -45,15 +47,15 @@ $weather = $owm->getWeather('Huddersfield', $units, $lang);
         
         <div class="panel panel-default text-center">
           <div class="panel-heading">
-            <div class="panel-title"><i class="fa fa-star"></i> <strong>Hotel City Weather</strong></div>
+            <div class="panel-title"><i class="fa fa-star"></i> <strong>User Information</strong></div>
           </div>
           <div class="panel-body">
             <address>
-            <abbr title="City">City</abbr> <a href="#">{{var_dump($data)}}</a><br>
-            <abbr title="Temperature">Temperature</abbr> <a href="#">{{ $weather->temperature->getFormatted() }} </a><br>
-            <abbr title="Pressure">Pressure</abbr> <a href="#">{{ $weather->pressure }} </a><br>
-            <abbr title="Humidity">Humidity</abbr> <a href="#">{{ $weather->humidity }} </a><br>
-            <abbr title="Sunrise">Sunrise</abbr> <a href="#">{{ $weather->sun->rise->format('r') }} </a><br>
+            <abbr title="City">City</abbr> <a href="#">{{ $characters->city }} </a><br>
+            <abbr title="Country">Country</abbr> <a href="#">{{ $characters->country }} </a><br>
+            <abbr title="Pressure">Ip Address</abbr> <a href="#">{{ $characters->ip }} </a><br>
+            <abbr title="Humidity">Postal Code</abbr> <a href="#">{{ $characters->postal }} </a><br>
+            <abbr title="Sunrise">Service Provider</abbr> <a href="#">{{ $characters->org }} </a><br>
 
             
             </address>

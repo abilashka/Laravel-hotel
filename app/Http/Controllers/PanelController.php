@@ -24,23 +24,9 @@ class PanelController extends Controller
     public function index()
     {
     	$userid = Auth::user()->id;
-		$records = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
 		
-		$chartjs = app()->chartjs
-        ->name('pieChartTest')
-        ->type('pie')
-        ->size(['width' => 400, 'height' => 200])
-        ->labels(['Label x', 'Label y'])
-        ->datasets([
-            [
-                'backgroundColor' => ['#FF6384', '#36A2EB'],
-                'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
-                'data' => [69, 59]
-            ]
-        ])
-        ->options([]);
-
-        return view('panel.main', compact('records', 'chartjs'));
+        return view('panel.main')->with('records',$users);
 	}
 	
 	public function getreport()
