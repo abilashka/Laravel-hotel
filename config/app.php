@@ -171,6 +171,7 @@ return [
         Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         
         
         
@@ -239,6 +240,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 
