@@ -7,6 +7,7 @@ use App\Booking;
 use DB;
 use Auth;
 use ExcelReport;
+use Validator;
 
 
 class PanelController extends Controller
@@ -23,8 +24,23 @@ class PanelController extends Controller
     public function index()
     {
     	$userid = Auth::user()->id;
-    	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
-        return view('panel.main')->with('records',$users);
+		$records = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		
+		$chartjs = app()->chartjs
+        ->name('pieChartTest')
+        ->type('pie')
+        ->size(['width' => 400, 'height' => 200])
+        ->labels(['Label x', 'Label y'])
+        ->datasets([
+            [
+                'backgroundColor' => ['#FF6384', '#36A2EB'],
+                'hoverBackgroundColor' => ['#FF6384', '#36A2EB'],
+                'data' => [69, 59]
+            ]
+        ])
+        ->options([]);
+
+        return view('panel.main', compact('records', 'chartjs'));
 	}
 	
 	public function getreport()
@@ -66,6 +82,98 @@ class PanelController extends Controller
     	$books = DB::table('Booking')->get();
         return view('panel.admin')->with('books',$books);
     }
+
+
+	public function contact(Request $request)
+    {
+
+		$name     = $request->input('name');
+		$email    = $request->input('email');
+		$subject  = $request->input('subject');
+		$comments = $request->input('comments');
+		$verify   = $request->input('verify');
+		
+		$validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+		if(trim($name) == '') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! You must enter your name.</div>';
+			exit();
+		} else if(trim($email) == '') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! Please enter a valid email address.</div>';
+			exit();
+		} else if ($validator->fails())  {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! You have enter an invalid e-mail address, try again.</div>';
+			exit();
+		}
+
+		else if(trim($subject) == '') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! Please enter a subject.</div>';
+			exit();
+		} else if(trim($comments) == '') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! Please enter your message.</div>';
+			exit();
+		} else if(!isset($verify) || trim($verify) == '') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! Please enter the verification number.</div>';
+			exit();
+		} else if(trim($verify) != '4') {
+			echo '<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Attention! The verification number you entered is incorrect.</div>';
+			exit();
+		}
+
+		if(get_magic_quotes_gpc()) {
+			$comments = stripslashes($comments);
+		}
+
+
+
+
+		$address = "rcr@gtcnr.com";
+		$e_subject = 'Support Request By:' . $name . '.';
+
+		$e_body = "You have been contacted by $name with regards to $subject, their additional message is as follows." . PHP_EOL . PHP_EOL;
+		$e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
+		$e_reply = "You can contact $name via email, $email";
+
+		$msg = wordwrap( $e_body . $e_content . $e_reply, 70 );
+
+		$headers = "From: $email" . PHP_EOL;
+		$headers .= "Reply-To: $email" . PHP_EOL;
+		$headers .= "MIME-Version: 1.0" . PHP_EOL;
+		$headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
+		$headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
+
+		if(mail($address, $e_subject, $msg, $headers)) {
+
+			// Email has sent successfully, echo a success page.
+
+			echo "<h1>Email Sent Successfully!</h1>";
+			echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';	
+			echo "<p>Thank you <strong>$name</strong>, your message has been submitted to us.</p>";
+			echo '</div>';
+
+		} else {
+
+			echo 'ERROR!';
+
+		}		
+
+
+	}
+
+
+
+
+
+
 
     public function cclbooking(Request $request)
     {

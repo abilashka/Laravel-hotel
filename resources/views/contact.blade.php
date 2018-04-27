@@ -54,7 +54,7 @@
 
         <div id="message"></div>
         <!-- Error message display -->
-        <form class="clearfix mt50" role="form" method="post" action="php/contact.php" name="contactform" id="contactform">
+        <form class="clearfix mt50" role="form" method="post" action="contact" name="contactform" id="contactform">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">

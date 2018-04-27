@@ -2,12 +2,67 @@
 
 
 @section('content')
+@php
+$data = [];
+use Cmfcmf\OpenWeatherMap;
+use Cmfcmf\OpenWeatherMap\Exception as OWMException;
+
+$lang = 'en';
+$units = 'metric';
+$owm = new OpenWeatherMap();
+$owm->setApiKey("99b7b87ee4abc5fa5dc7b55280272018");
+$weather = $owm->getWeather('Huddersfield', $units, $lang);
+@endphp
+
+<script>
+
+    $.get("https://ipinfo.io", function(response) {
+        $data = json_decode($response, true);
+}, "jsonp")
+</script>
 
 <div class="dashboard-wrapper">
 	<div class="row">
     	<div class="col-md-3 col-sm-4 users-sidebar-wrapper">
             @include('panel.layout.sidebar')
+
+            <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <div class="panel-title"><i class="fa fa-star"></i> <strong>Hotel City Weather</strong></div>
+          </div>
+          <div class="panel-body">
+            <address>
+            <abbr title="City">City</abbr> <a href="#">{{ $weather->city->name }} </a><br>
+            <abbr title="Temperature">Temperature</abbr> <a href="#">{{ $weather->temperature->getFormatted() }} </a><br>
+            <abbr title="Pressure">Pressure</abbr> <a href="#">{{ $weather->pressure }} </a><br>
+            <abbr title="Humidity">Humidity</abbr> <a href="#">{{ $weather->humidity }} </a><br>
+            <abbr title="Sunrise">Sunrise</abbr> <a href="#">{{ $weather->sun->rise->format('r') }} </a><br>
+
+            
+            </address>
+          </div>
         </div>
+        
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <div class="panel-title"><i class="fa fa-star"></i> <strong>Hotel City Weather</strong></div>
+          </div>
+          <div class="panel-body">
+            <address>
+            <abbr title="City">City</abbr> <a href="#">{{var_dump($data)}}</a><br>
+            <abbr title="Temperature">Temperature</abbr> <a href="#">{{ $weather->temperature->getFormatted() }} </a><br>
+            <abbr title="Pressure">Pressure</abbr> <a href="#">{{ $weather->pressure }} </a><br>
+            <abbr title="Humidity">Humidity</abbr> <a href="#">{{ $weather->humidity }} </a><br>
+            <abbr title="Sunrise">Sunrise</abbr> <a href="#">{{ $weather->sun->rise->format('r') }} </a><br>
+
+            
+            </address>
+          </div>
+        </div>
+        
+        </div>
+
+        
             <div class="col-md-9 col-sm-8">
 	        	<h2>Dashboard</h2>
 				<br>

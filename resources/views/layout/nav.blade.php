@@ -14,10 +14,10 @@
           </li>
           <li> <a href="/rooms">Room List</a></li>
           <li> <a href="/gallery">Gallery</a></li>
-          <li> <a href="/contact">Gallery</a></li>
+          <li> <a href="/contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </div>
-  
+
 </header>
