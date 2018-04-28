@@ -9,8 +9,8 @@ use Auth;
 use ExcelReport;
 use Validator;
 
+use App\Charts\SampleChart;
 
-use Charts;
 use App\User;
 
 
@@ -64,7 +64,8 @@ class PanelController extends Controller
 			'.italic-red' => 'color: red;font-style: italic;'
 		])
 		->download('report');
-    }
+	}
+	
 
     public function adminpanel()
     {
@@ -74,23 +75,7 @@ class PanelController extends Controller
 	}
 	
 
-	public function GetChart()
-	{
-
-
-		$users = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))
-    				->get();
-        $chart = Charts::database($users, 'bar', 'highcharts')
-			      ->title("Monthly new Register Users")
-			      ->elementLabel("Total Users")
-			      ->dimensions(1000, 500)
-			      ->responsive(false)
-			      ->groupByMonth(date('Y'), true);
-        return view('chart',compact('chart'));
-
-
-
-	}
+	
 
 	public function contact(Request $request)
     {

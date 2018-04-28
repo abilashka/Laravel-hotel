@@ -4,6 +4,8 @@
 
 <title> @yield('title') </title>
 
+
+
 <link rel="shortcut icon" href="/favicon.ico">
 
 <!-- Stylesheets -->
