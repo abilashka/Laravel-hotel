@@ -10,6 +10,11 @@ use ExcelReport;
 use Validator;
 
 
+use Charts;
+use App\User;
+
+
+
 class PanelController extends Controller
 {
 
@@ -24,8 +29,7 @@ class PanelController extends Controller
     public function index()
     {
     	$userid = Auth::user()->id;
-		$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
-		
+    	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
         return view('panel.main')->with('records',$users);
 	}
 	
@@ -67,8 +71,26 @@ class PanelController extends Controller
     	$userid = Auth::user()->id;
     	$books = DB::table('Booking')->get();
         return view('panel.admin')->with('books',$books);
-    }
+	}
+	
 
+	public function GetChart()
+	{
+
+
+		$users = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y'))
+    				->get();
+        $chart = Charts::database($users, 'bar', 'highcharts')
+			      ->title("Monthly new Register Users")
+			      ->elementLabel("Total Users")
+			      ->dimensions(1000, 500)
+			      ->responsive(false)
+			      ->groupByMonth(date('Y'), true);
+        return view('chart',compact('chart'));
+
+
+
+	}
 
 	public function contact(Request $request)
     {

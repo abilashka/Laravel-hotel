@@ -8,6 +8,7 @@
         "php": ">=7.0.0",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "barryvdh/laravel-snappy": "^0.4.1",
+        "consoletvs/charts": "^6.1",
         "fideloper/proxy": "~3.3",
         "gmopx/laravel-owm": "^0.1.2",
         "jimmyjs/laravel-report-generator": "^1.0",
@@ -15,8 +16,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
-        "reportico/laravel-reportico": "~5.2",
-        "torann/laravel-weather": "0.1.*@dev"
+        "reportico/laravel-reportico": "~5.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
