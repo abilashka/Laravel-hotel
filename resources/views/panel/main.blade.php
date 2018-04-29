@@ -19,6 +19,8 @@ $url = 'https://ipinfo.io'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
 $characters = json_decode($data); // decode the JSON feed
 
+$chartdata = array(0, 0, 0);
+
 @endphp
 
 
@@ -103,6 +105,7 @@ $characters = json_decode($data); // decode the JSON feed
                                         @php if($rec->Status == 0) echo '<span class="btn btn-xs btn-info"><i class="fa fa-info-circle"></i> Payment due</span>'; @endphp
                                         @php if($rec->Status == 1) echo '<span class="btn btn-xs btn-success"><i class="fa fa-check"></i> Paid</span><br><br>'; @endphp
                                         @php if($rec->Status == 2) echo '<span class="btn btn-xs btn-danger"><i class="fa fa-warning"></i> Cancelled</span>'; @endphp
+                                        @php $chartdata[$rec->Status]++;  @endphp
                                     </td>
                                     <td>
                                         <form class="reservation-vertical clearfix" role="form" action="/usercp" name="usercpformcnl" id="usercpformcnl" method="POST">
@@ -124,11 +127,34 @@ $characters = json_decode($data); // decode the JSON feed
 
                             </tbody>
                         </table> 
+                        <div id="piechart" style="width: 900px; height: 500px;"></div>
                     </div>
                 </div>  
             </div>
         </div>
     </div>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Booking', 'Amounts'],
+          ['Payment Pending',     {{json_encode($chartdata[0])}}],
+          ['Paid',       {{json_encode($chartdata[1])}}],
+          ['Cancelled',   {{json_encode($chartdata[2])}}]
+        ]);
+
+        var options = {
+          title: 'Booking Report'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 @endsection

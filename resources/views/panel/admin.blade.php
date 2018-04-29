@@ -2,7 +2,10 @@
 
 @section('content')
 
+@php
 
+$chartdata = array(0, 0, 0);
+@endphp
 
 <div class="dashboard-wrapper">
   <div class="row">
@@ -37,9 +40,10 @@
                     <td><span class="price">{{ number_format($booking->Price) }} &pound;</span></td>
                     <td>{{ $booking->Size }}</td>
                     <td>
-                      @php if($booking->Status == 0) echo '<span class="btn btn-xs btn-info"><i class="fa fa-info-circle"></i> Payment due</span>'; @endphp
+                      @php if($booking->Status == 0) echo '<span class="btn btn-xs btn-info"><i class="fa fa-info-circle"></i> Payment due</span>';  @endphp
                       @php if($booking->Status == 1) echo '<span class="btn btn-xs btn-success"><i class="fa fa-check"></i> Paid</span><br><br>'; @endphp
-                      @php if($booking->Status == 2) echo '<span class="btn btn-xs btn-danger"><i class="fa fa-warning"></i> Cancelled</span>'; @endphp
+                      @php if($booking->Status == 2) echo '<span class="btn btn-xs btn-danger"><i class="fa fa-warning"></i> Cancelled</span>';  @endphp
+                     @php $chartdata[$booking->Status]++;  @endphp
                     </td>
                     <td>
                       <form class="reservation-vertical clearfix" role="form" action="/usercp/admin/clear" name="usercpform" id="usercpform" method="POST">
@@ -63,13 +67,36 @@
                 @endforeach
               </tbody>
             </table>
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
    
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Booking', 'Amounts'],
+          ['Payment Pending',     {{json_encode($chartdata[0])}}],
+          ['Paid',       {{json_encode($chartdata[1])}}],
+          ['Cancelled',   {{json_encode($chartdata[2])}}]
+        ]);
+
+        var options = {
+          title: 'Booking Report'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 
 @endsection

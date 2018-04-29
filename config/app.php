@@ -172,6 +172,9 @@ return [
         Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
+        Moloquent\MongodbServiceProvider::class,
+        Moloquent\Auth\PasswordResetServiceProvider::class,
+        Moloquent\MongodbQueueServiceProvider::class,
         
         
         
@@ -241,6 +244,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Moloquent'       => 'Moloquent\Eloquent\Model',
         
 
     ],
