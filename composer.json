@@ -10,6 +10,7 @@
         "barryvdh/laravel-snappy": "^0.4.1",
         "fideloper/proxy": "~3.3",
         "gmopx/laravel-owm": "^0.1.2",
+        "jenssegers/mongodb": "v3.3",
         "jimmyjs/laravel-report-generator": "^1.0",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",

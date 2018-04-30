@@ -87,9 +87,7 @@ return [
             'password'     => env('DB_PASSWORD'),
             'use_mongo_id' => false,
             'options'      => [
-                'database' => 'hotel',
-                'username' => 'hotel',
-                'password' => 'hotelmongo',
+                'database' => 'admin'
             ],
         ],
 

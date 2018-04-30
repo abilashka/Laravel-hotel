@@ -168,13 +168,10 @@ return [
         
         /************Custom Providers***********/
         
-        Reportico\Reportico\ReporticoServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
-        Moloquent\MongodbServiceProvider::class,
-        Moloquent\Auth\PasswordResetServiceProvider::class,
-        Moloquent\MongodbQueueServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         
         
