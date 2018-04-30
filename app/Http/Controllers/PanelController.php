@@ -9,8 +9,6 @@ use Auth;
 use ExcelReport;
 use Validator;
 
-use App\Charts\SampleChart;
-
 use App\User;
 
 
@@ -37,7 +35,8 @@ class PanelController extends Controller
     {
 		$userid = Auth::user()->id;
 		$title = 'Room Booking Report';
-		$queryBuilder = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		// $queryBuilder = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		$queryBuilder = Booking::select(['Checkin', 'Checkout', 'Adult', 'Child', 'Price', 'Size', 'Status']);
         $columns = [
 			'Check in' => 'Checkin',
 			'Check out' => 'Checkout',
@@ -54,11 +53,32 @@ class PanelController extends Controller
 		$meta = [
 			'Sort By' => 'Checkin'
 		];
-		 var_dump($queryBuilder);
+		// var_dump($queryBuilder);
+		// return PdfReport::of($title, $meta, $queryBuilder, $columns)
+        //             ->editColumns(['Room Type', 'Status'], [
+        //                 'class' => 'right bold'
+        //             ])
+        //             ->showTotal([
+        //                 'Price' => 'point' // if you want to show dollar sign ($) then use 'Total Balance' => '$'
+        //             ])
+        //             ->limit(20)
+        //             ->stream(); // or download('filename here..') to download pdf
+
+
+		 
 		return ExcelReport::of($title, $meta, $queryBuilder, $columns)
 		->editColumn('Price', [
 			'class' => 'right bolder italic-red'
 		])
+		->editColumn('Status', [
+			'class' => 'right bolder italic-red'
+		])
+		->showTotal([
+			'Price' => '$', // if you want to show dollar sign ($) then use 'Total Balance' => '$'
+			'Adult' => 'point',
+			'Child' => 'point'
+		])
+		->groupBy('Status')
 		->setCss([
 			'.bolder' => 'font-weight: 800;',
 			'.italic-red' => 'color: red;font-style: italic;'

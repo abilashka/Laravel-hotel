@@ -16,6 +16,7 @@ $chartdata = array(0, 0, 0);
     <h2>Dashboard</h2>
       <br><h4>Reservations</h4>
         <div class="dashboard-block">
+        <div class="col-md-4 col-sm-4 navbar-right"><a href="/usercp/report" class="btn btn-lg  btn-danger btn-block google">Download Full Report</a></div>
           <div id="message"></div>
           <div class="table-responsive">
             <table class="table table-striped mt30">

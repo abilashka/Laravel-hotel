@@ -27,7 +27,6 @@ Route::get('/contact', function () {
 
 Route::get('/usercp', 'PanelController@index');
 
-Route::get('/show/report', 'PanelController@GetChart');
 Route::get('/usercp/report', 'PanelController@getreport');
 Route::post('/editbooking/{booking}', 'PanelController@upbooking');
 Route::post('/usercp', 'PanelController@cclbooking');
