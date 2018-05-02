@@ -27,8 +27,9 @@ class PanelController extends Controller
     public function index()
     {
     	$userid = Auth::user()->id;
-    	$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
-        return view('panel.main')->with('records',$users);
+		$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		$object = json_decode(json_encode($users), FALSE);
+        return view('panel.main')->with('records',$object);
 	}
 	
 	public function getreport()
@@ -90,7 +91,8 @@ class PanelController extends Controller
     public function adminpanel()
     {
     	$userid = Auth::user()->id;
-    	$books = DB::table('Booking')->get();
+		$books = DB::table('Booking')->get();
+		$books = json_decode(json_encode($books), FALSE);
         return view('panel.admin')->with('books',$books);
 	}
 	
@@ -190,8 +192,9 @@ class PanelController extends Controller
 
     public function cclbooking(Request $request)
     {
-    	$bookID = $request->input('bookID');
-    	$count = DB::table('Booking')->where([['Status', '=', '2'],['id', '=', $bookID],])->count();
+		$bookID = (int)$request->input('bookID');
+		
+			$count = DB::table('Booking')->where(['Status' => 2,'id' => $bookID])->count();
 
         if(trim($bookID) == '') 
         {
@@ -207,7 +210,7 @@ class PanelController extends Controller
 		}
 		else
 		{
-		 	DB::table('Booking')->where('id', $bookID)->update(['Status' => 2]);
+		 	DB::collection('Booking')->where('id', $bookID)->update(['Status' => 2]);
 		 	DB::table('cancelations')->insert(['RefID' => $bookID]);
 			echo '<div class="alert alert-success alert-dismissable"> 
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 
@@ -218,7 +221,8 @@ class PanelController extends Controller
 
 public function dlbooking(Request $request)
     {
-    	$bookID = $request->input('bookID');
+		$bookID = (int)$request->input('bookID');
+
     	$count = DB::table('Booking')->where([['id', '=', $bookID],])->count();
 
         if(trim($bookID) == '') 
@@ -249,14 +253,16 @@ public function dlbooking(Request $request)
 	{
 	  
 	  $query = $request->input('search');
-	  $data = DB::table('Booking')->where('Checkin', 'LIKE', '%' . $query . '%')->paginate(10);
+	  $data = DB::table('Booking')->where('Checkin', 'LIKE', '%' . $query . '%')->get();
+	  $data = json_decode(json_encode($data), FALSE);
 	  return view('panel.main')->with('records',$data);    
 	 }
 
     public function clrbooking(Request $request)
     {
-    	$bookID = $request->input('bookID');
-    	$count = DB::table('Booking')->where([['Status', '=', '2'],['id', '=', $bookID],])->count();
+		$bookID = $request->input('bookID');
+		$bookID = (int)$bookID;
+    	$count = DB::table('Booking')->where([['Status', '=', 2],['id', '=', $bookID],])->count();
 
         if(trim($bookID) == '') 
         {
@@ -268,7 +274,7 @@ public function dlbooking(Request $request)
 		elseif($count)
 		{
 			echo '<div class="alert alert-danger alert-dismissable">
-  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This booking has been paid already.</div>';
+  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This booking has been paid already or cancelled.</div>';
 			
 		}
 		else
@@ -302,7 +308,7 @@ public function dlbooking(Request $request)
 		{
 			$checkin = $request->input('checkin');
 			$checkout = $request->input('checkout');
-			$adults = $request->input('adults');
+			$adults = (int)$request->input('adults');
 			$children = $request->input('children');
 
 		 	DB::table('Booking')->where('id', $booking)->update(array('Checkin' => $checkin,'Checkout' => $checkout,'Adult' => $adults,'Child' => $children));
@@ -320,17 +326,18 @@ public function dlbooking(Request $request)
 
     public function userprofile()
     {
-        $userid = Auth::user()->id;
-    	$user = DB::table('users')->where('id', '=', $userid)->get();
+        $userid = (int)Auth::user()->id;
+		$user = DB::table('users')->where('id', '=', $userid)->get();
+		$user = json_decode(json_encode($user), FALSE);
         return view('panel.profile',compact('user'));
     }
 
     public function updateprofile(Request $request)
     {
-    	$userid = Auth::user()->id;
+    	$userid = (int)Auth::user()->id;
     	$name = $request->input('name');
     	$email = $request->input('email');
-    	$phone = $request->input('phone');
+    	$phone = (int)$request->input('phone');
     	$qanswer = $request->input('qanswer');
     	$npass = $request->input('npass');
     	$ncpass = $request->input('ncpass');
