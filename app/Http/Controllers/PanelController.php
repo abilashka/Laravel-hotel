@@ -90,7 +90,7 @@ class PanelController extends Controller
 
     public function adminpanel()
     {
-    	$userid = Auth::user()->id;
+    	
 		$books = DB::table('Booking')->get();
 		$books = json_decode(json_encode($books), FALSE);
         return view('panel.admin')->with('books',$books);
@@ -289,7 +289,8 @@ public function dlbooking(Request $request)
 
     public function upbooking(Request $request, $booking)
     {
-    	$count = DB::table('Booking')->where([['Status', '=', '2'],['id', '=', $booking],])->count();
+		$booking - (int)$booking;
+    	$count = DB::table('Booking')->where([['Status', '=', 2],['id', '=', $booking],])->count();
 
         if(trim($booking) == '') 
         {

@@ -6,5 +6,5 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Rooms extends Eloquent
 {
-    //
+    public $table = "rooms";
 }

@@ -6,28 +6,31 @@ use Illuminate\Http\Request;
 use App\Rooms;
 use DB;
 use Auth;
-
-class RoomsController extends Controller
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+class RoomsController extends Eloquent
 {
    public function index()
     {
         return view('rooms.index');
     }
 
-    public function show(Rooms $room)
+    public function show($room)
     {
-        return view('rooms.show', compact('room') );
+		$room = (int)$room;
+		$room = DB::table('rooms')->where('id', '=', $room)->get();
+		$room = json_decode(json_encode($room), FALSE);
+        return view('rooms.show')->with('room',$room[0]);
     }
 
     public function createbking(Request $request)
     {
-    	$userid = Auth::user()->id;
+    	$userid = (int)Auth::user()->id;
     	$checkin    = $request->input('checkin');
 		$checkout    = $request->input('checkout');
 		$room    = $request->input('room');
-		$adults    = $request->input('adults');
-		$children    = $request->input('children');
-		$price  = $request->input('price');
+		$adults    = (int)$request->input('adults');
+		$children    = (int)$request->input('children');
+		$price  = (int)$request->input('price');
 
 		if(Auth::guest())
 		{
@@ -64,9 +67,11 @@ class RoomsController extends Controller
 		}
 		else
 		{
+			$inc = DB::table('Booking')->get()->last();
 		 	DB::table('Booking')->insert(
-			    ['Uid' => $userid, 'Checkin' => $checkin, 'Checkout' => $checkout, 'Adult' => $adults, 'Child' => $children, 'Price' => $price, 'Size' => $room]
+			    ['id' => $inc['id']+1, 'Uid' => $userid, 'Checkin' => $checkin, 'Checkout' => $checkout, 'Adult' => $adults, 'Child' => $children, 'Price' => $price, 'Size' => $room, 'Status' => 0]
 			);
+			
 			echo '<div class="alert alert-success alert-dismissable"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Sucess!</strong>You have reserved a room, Enjoy your stay and have fun!
        		</div>';
 
