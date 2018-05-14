@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use ExcelReport;
 use Validator;
+use Image;
 
 use App\User;
 
@@ -24,6 +25,7 @@ class PanelController extends Controller
         $this->middleware('auth');
     }
 
+	
     public function index()
     {
     	$userid = Auth::user()->id;
@@ -31,6 +33,25 @@ class PanelController extends Controller
 		$object = json_decode(json_encode($users), FALSE);
         return view('panel.main')->with('records',$object);
 	}
+
+	public function update_avatar(Request $request){
+
+    	// Handle the user upload of avatar
+    	if($request->hasFile('avatar')){
+    		$avatar = $request->file('avatar');
+    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
+    		Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
+
+    		$user = Auth::user();
+    		$user->avatar = $filename;
+    		$user->save();
+    	}
+
+    	$userid = Auth::user()->id;
+		$users = DB::table('Booking')->where('Uid', '>=', $userid)->get();
+		$object = json_decode(json_encode($users), FALSE);
+        return view('panel.main')->with('records',$object);
+    }
 	
 	public function getreport()
     {
@@ -183,11 +204,6 @@ class PanelController extends Controller
 
 
 	}
-
-
-
-
-
 
 
     public function cclbooking(Request $request)

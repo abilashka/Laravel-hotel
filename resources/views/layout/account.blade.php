@@ -12,7 +12,8 @@
                 <li> <a href="{{ route('register') }}">Register</a> </li>
               </ul>
               @else
-              <button class="btn btn-default btn-xs dropdown-toggle js-activated" type="button" data-toggle="dropdown">Welcome {{ Auth::user()->name }}<span class="caret"></span> </button>
+              <button class="btn btn-default btn-xs dropdown-toggle js-activated" type="button" data-toggle="dropdown"><img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:32px; height:32px; border-radius:50%">
+</span>Welcome {{ Auth::user()->name }}<span class="caret"></span> </button>
               <ul class="dropdown-menu">
                 <li> <a href="/usercp">User CP</a> </li>
                 <li> <a href="{{ route('logout') }}">Logout</a> </li>

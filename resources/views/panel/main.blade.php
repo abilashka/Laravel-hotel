@@ -101,6 +101,7 @@ $chartdata = array(0, 0, 0);
                                     <td>{{ ($rec->Adult+$rec->Child) }}</td>
                                     <td>{{ $rec->Price }}</td>
                                     <td>{{ $rec->Size }}</td>
+                                    @php $rec->Status = 0; @endphp
                                     <td>
                                         @php if($rec->Status == 0) echo '<span class="btn btn-xs btn-info"><i class="fa fa-info-circle"></i> Payment due</span>'; @endphp
                                         @php if($rec->Status == 1) echo '<span class="btn btn-xs btn-success"><i class="fa fa-check"></i> Paid</span><br><br>'; @endphp

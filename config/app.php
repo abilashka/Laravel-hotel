@@ -172,6 +172,8 @@ return [
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Gmopx\LaravelOWM\LaravelOWMServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        'Stevebauman\Translation\TranslationServiceProvider',
 
         
         
@@ -243,6 +245,8 @@ return [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Moloquent'       => 'Moloquent\Eloquent\Model',
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Translation' => 'Stevebauman\Translation\Facades\Translation',
         
 
     ],

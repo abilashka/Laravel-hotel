@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    Translation::setLocale('fr');
+    return view(trans('home'));
 });
 
 
@@ -26,6 +27,7 @@ Route::get('/contact', function () {
 });
 
 Route::get('/usercp', 'PanelController@index');
+Route::post('/usercp/up', 'PanelController@update_avatar');
 
 Route::get('/usercp/report', 'PanelController@getreport');
 Route::post('/editbooking/{booking}', 'PanelController@upbooking');
